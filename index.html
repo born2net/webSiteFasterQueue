@@ -320,6 +320,12 @@
                 self.m_videoPlayer.pause();
                 self.m_videoPlayer.load();
             });
+
+            if (window.location.href.indexOf('video')>1){
+                setTimeout(function(){
+                    $('#openVideo').trigger('click');
+                },300);
+            }
         });
 
 
