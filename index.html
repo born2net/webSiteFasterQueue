@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Mediasignage</title>
+    <title>DigitalSignage.com - FasterQueue</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" type="text/css" href="./css/layout.css" media="screen">
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="js/video/video-js.css">
+
 
 </head>
 
@@ -47,6 +49,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-offset-1">
                 <h2><span>FasterQueue</span><br/><i> NO MORE LINES...</t></i></h2>
+
                 <div id="headerText">
                 </div>
 
@@ -84,10 +87,42 @@
 
                 </ul>
                 <br/>
-                <a href="https://galaxy.signage.me/_studiolite-dist/StudioLite.mp4" data-webm="http://www.digitalsignage.com/_lite/StudioLite.webm" class="html5lightbox vlink" title="Video introduction">Video introduction</a>
 
+                <div style="text-align: left;">
+                    <a id="openVideo" style="width: 400px; margin-left: 30px" href="#" class="vlink" title="Video introduction">Video introduction</a>
+                </div>
+
+
+                <div class="modal fade" id="videoModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div id="videoModalDialog" class="modal-dialog">
+                        <div id="videoModalContent" class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                        aria-hidden="true">&times;</span><span
+                                        class="sr-only">Close</span></button>
+                                <span data-localize="videoTutorial" class="modal-title" id="videoModalHeader">video tutorial</span><span
+                                    id="videoModalHeaderLite">StudioLite</span>
+                            </div>
+                            <div class="modal-body">
+                                <center>
+                                    <video id="videoIntro"
+                                           class="centerElement vjs-big-play-centered video-js vjs-default-skin"
+                                           controls
+                                           preload="auto"
+                                           data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+                                    </video>
+                                </center>
+                            </div>
+                            <div style="text-align: center">
+                                <button id="closeModal" type="button" class="btn btn-primary" data-dismiss="modal">
+                                    [ close ]
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -111,7 +146,8 @@
                 <h2>How does this work?</h2>
 
                 <p>Your customers request a position in-line over the web or physically at the location of business. They can check status on their position in-line via a web page, mobile app or through email and SMS notifications. At the same time your business can continue and accept walk-ins. Employees (tellers) can call the next person in line for a specified line id. The system supports multiple lines and multiple terminals so you can serve your customers in the most efficient manner. Statistics are collected to generate reports on how well and how fast your customers are served.</p>
-                <p>Best of all, FasterQueue is fully integrated with DigitalSignage.com’s StudioLite, so you can easily mix  your Digital Signage presentation with customer queue management, all right on the same screen.</p>
+
+                <p>Best of all, FasterQueue is fully integrated with DigitalSignage.com’s StudioLite, so you can easily mix your Digital Signage presentation with customer queue management, all right on the same screen.</p>
             </div>
         </div>
     </div>
@@ -153,6 +189,7 @@
         <div class="row">
             <h2 class="col-sm-12 pull-left customDev">Customization</h2>
             <br/>
+
             <div>
                 <p>FasterQueue is a front end open source project that is available under MIT license from GitHub. You can customize the front end application or contact DigitalSignage.com for a quote on custom development to fulfil your feature requirements.</p>
             </div>
@@ -180,7 +217,9 @@
                 <p>use the App to help customers stay notified on their position in-line </p>
             </div>
             <div class="col-md-3"><img src="images/icon-4.png">
+
                 <h3><a class="ext" href="http://www.digitalsignage.com/_html/mediacloud.html">mediaCLOUD </a></h3>
+
                 <p>FasterQueue is powered by the mediaCLOUD so it's easy to start</p>
             </div>
 
@@ -249,7 +288,44 @@
 <script src="./js/jquery.easing.js" type="text/javascript"></script>
 <script src="./js/jquery-1.7.1.min.js" type="text/javascript"></script>
 <script src="./js/bootstrap.js" type="text/javascript"></script>
-<script type="text/javascript" src="./html5lightbox/jquery.js"></script>
-<script type="text/javascript" src="./html5lightbox/html5lightbox.js"></script>
+<script type="text/javascript" src="js/video/video.dev.js"></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        videojs('videoIntro').ready(function () {
+            self.m_videoPlayer = this;
+            self.m_videoPlayer.load();
+            self.m_videoPlayer.play();
+
+            $('#openVideo').on('click', function () {
+                $('#videoModal').modal('show');
+                $('#videoIntro').find('video:nth-child(1)').attr("src", 'https://galaxy.signage.me/_studiolite-dist/StudioLite.mp4');
+                var w = $(window).width() - ($(window).width() * 0.2);
+                var h = $(window).height() - ($(window).height() * 0.2);
+                $('#videoIntro').width(w).height(h);
+                return false;
+            });
+
+            $(document).keyup(function(e) {
+                if (e.keyCode == 27) {
+                    self.m_videoPlayer.pause();
+                    self.m_videoPlayer.load();
+                }
+            });
+
+            $('#closeModal').on('click', function () {
+                self.m_videoPlayer.pause();
+                self.m_videoPlayer.load();
+            });
+        });
+
+
+    });
+
+</script>
+
 </body>
 </html>

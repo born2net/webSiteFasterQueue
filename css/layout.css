@@ -23,11 +23,18 @@ h3 {
 .shad {
 	text-shadow: -2px -1px 0px #000000;
 }
+.modal-backdrop {
+    z-index: -1 !important;
+}
+
+.center {text-align: center;}
+.centerm {margin: 0px auto;}
 
 a, a:visited, a:hover {
 	color: #e17d1c;
 	text-decoration:none;
 }
+
 a.button-2:hover {
 	text-decoration: none;
 }
@@ -267,6 +274,23 @@ a:active{text-decoration:none}
 	left: 50%;
 	margin-left: -606px;
 }
+#videoModalDialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#videoModalContent {
+    height: 100%;
+    border-radius: 0;
+}
+
+#closeModal {
+    width: 120px;
+    position: relative;
+    left: 5px;
+}
 #header {
 	background: #000000 url(../images/banner.png) no-repeat top center;
 	background-size: 100%;
@@ -433,7 +457,7 @@ a:active{text-decoration:none}
 }
 #section6 h2 {
 	color: #000;
-	font-size:30px; 
+	font-size:30px;
 	font-weight:bold;
 }
 #section6 .telephone {
